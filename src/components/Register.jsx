@@ -4,14 +4,18 @@ import Proxy from "../Proxy";
 import { NotifyHandler, NotifyComponent } from "react-notification-component";
 import View from "./View";
 import Login from "./Login";
+import disableBrowserBackButton from "disable-browser-back-navigation";
 export default class Register extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            isSuccessfull : false,
-            isLogin : false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSuccessfull: false,
+      isLogin: false,
+    };
+  }
+  componentDidMount() {
+    disableBrowserBackButton();
+  }
   onSubmitHandle = (e) => {
     e.preventDefault();
     axios({
@@ -44,13 +48,13 @@ export default class Register extends Component {
           },
           () => {
             this.setState({
-                isSuccessfull:false
-            })
+              isSuccessfull: false,
+            });
           },
           () => {
             this.setState({
-                isSuccessfull:false
-            })
+              isSuccessfull: false,
+            });
           }
         );
       })
@@ -79,13 +83,13 @@ export default class Register extends Component {
           },
           () => {
             this.setState({
-                isLogin:true
-            })
+              isLogin: true,
+            });
           },
           () => {
             this.setState({
-                isLogin:true
-            })
+              isLogin: true,
+            });
           }
         )
       );
@@ -96,19 +100,19 @@ export default class Register extends Component {
       [e.target.id]: e.target.value,
     });
   };
-  
+
   componentWillUnmount() {
     this.setState({
-        isSuccessfull:false
-    })
+      isSuccessfull: false,
+    });
   }
 
   render() {
     if (this.state.isSuccessfull === true) {
-        return <View/>;
-      }else if(this.state.isLogin === true){
-          return <Login/>
-      }
+      return <View />;
+    } else if (this.state.isLogin === true) {
+      return <Login />;
+    }
     return (
       <div
         className="container"

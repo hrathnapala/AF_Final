@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { NotifyHandler, NotifyComponent } from "react-notification-component";
 import View from "./View";
+import disableBrowserBackButton from 'disable-browser-back-navigation';
 
 export default class Login extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ export default class Login extends Component {
       isSuccessfull: false,
     };
   }
-
+  componentDidMount() {
+    disableBrowserBackButton();
+  }
   onSubmitHandle = (e) => {
     e.preventDefault();
     axios

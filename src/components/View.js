@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import Games from "./Games";
+import disableBrowserBackButton from 'disable-browser-back-navigation';
 
 export default class View extends Component {
+  componentDidMount() {
+    disableBrowserBackButton();
+  }
   render() {
     return (
       <div
